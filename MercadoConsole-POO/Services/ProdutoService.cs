@@ -111,12 +111,26 @@ namespace MercadoConsole_POO.Services
                 {
                     Console.WriteLine("Data inválida! Mantendo a validade anterior.");
                 }
-
             }
-
             Console.WriteLine("Produto atualizado!");
+        }
 
-
+        public void ExcluirProduto()
+        {
+            Console.WriteLine("\nID do Produto para excluir: ");
+            if (!int.TryParse(Console.ReadLine(), out int id))
+            {
+                Console.WriteLine("ID Inválido!");
+                return;
+            }
+            var produto = produtos.FirstOrDefault(p => p.Id == id);
+            if (produto == null)
+            {
+                Console.WriteLine("Produto não encontrado!");
+                return;
+            }
+            produtos.Remove(produto);
+            Console.WriteLine("Produto removido com sucesso!");
         }
     }
 }
